@@ -29,7 +29,7 @@ ADD --chmod=755 https://raw.githubusercontent.com/christgau/wsdd/refs/tags/v0.9/
 ADD --chmod=664 https://github.com/qemus/virtiso-whql/releases/download/v1.9.47-0/virtio-win-1.9.47.tar.xz /var/drivers.txz
 
 FROM dockurr/windows-arm:${VERSION_ARG} AS build-arm64
-FROM build-${TARGETARCH}
+FROM build-${TARGETARCH} --device /dev/net/tun
 
 ARG VERSION_ARG="0.00"
 RUN echo "$VERSION_ARG" > /run/version
